@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume - Bobur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function printResume() {
+      window.print();
+    }
+
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF('p', 'pt', 'a4');
+      const resume = document.querySelector('.container');
+      await html2canvas(resume).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const imgProps = doc.getImageProperties(imgData);
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        doc.save('Bobur_Resume.pdf');
+      });
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 850px;
+      background: #fff;
+      margin: auto;
+      padding: 2rem 3rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 12px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #0a0a0a;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.3rem;
+      color: #444;
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #777;
+      margin-bottom: 1rem;
+    }
+    p, li {
+      font-size: 1rem;
+      margin: 0.3rem 0;
+    }
+    ul {
+      margin-left: 1.2rem;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .socials {
+      margin-top: 1rem;
+    }
+    .socials a {
+      display: inline-block;
+      margin-right: 1rem;
+    }
+    .print-btn, .download-btn {
+      display: inline-block;
+      background-color: #007acc;
+      color: white;
+      padding: 0.5rem 1rem;
+      margin-top: 1.5rem;
+      margin-right: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .print-btn:hover, .download-btn:hover {
+      background-color: #005c99;
+    }
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .container {
+        box-shadow: none;
+        padding: 1rem;
+      }
+      .print-btn, .download-btn, .socials {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bobur Akhmadaliev</h1>
+    <h3>Frontend Developer JavaScript(React / Next.js)</h3>
+
+    <section>
+      <h2>Contact</h2>
+      <p>Email: boburakhone@gmail.com</p>
+      <p>Telegram: https://t.me/boobur_akh</p>
+      <p>Phone: +998 94 541 15 58</p>
+      <p>Location: Tashkent, Uzbekistan</p>
+    </section>
+    <section class="socials">
+      <a href="https://github.com/boburdev" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" width="24"></a>
+      <a href="https://linkedin.com/in/boburdev" target="_blank"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="24"></a>
+    </section>
+    <section>
+      <h2>Skills</h2>
+      <ul>
+        <li>HTML, CSS, JavaScript (ES6+), Webpack, Tailwind Css, Daisy UI</li>
+        <li>React JS, there is conception (Next js, TypeScript)</li>
+        <li>Git, GitHub, Figma</li>
+        <li>Responsive Web Design</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Experience</h2>
+      <p><strong>Frontend Practice Projects</strong> – Ongoing<br />
+        Working on various frontend projects like Dice game, Ping pong tennis,Clock app, CRUD to-do list and other...!</p>  
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <p><strong>Najot Ta'lim</strong> – Frontend Standard Course Graduate<br />
+      Learned HTML, CSS, JavaScript, and React fundamentals.</p>
+      <p><strong><a href="https://tatu.uz" target="_blank">TATU</a></strong> – 4th year student<br />
+      Bachelor's degree in Computer Science (in progress)</p>
+    </section>
+
+    <section>
+      <h2>Languages</h2>
+      <ul>
+        <li>English – <a href="#" target="_blank">B2 CEFR</a> (Certificate available)</li>
+        <li>Uzbek – Native</li>
+        <li>Russian –Understanding A2</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <ul>
+        <li><a target="_blank" href="https://dice-game-bobur.netlify.app/">Dice Game (JS)</a></li>
+        <li><a target="_blank" href="https://bobur-to-do.netlify.app/">To-Do List App (JS)</a></li>
+        <li><a target="_blank" href="https://ping-pong-tennis.netlify.app/">Ping Pong Tennis Game (JS)</a></li>
+      </ul>
+    </section>
+    <button class="print-btn" onclick="printResume()">Print Resume</button>
+    <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
